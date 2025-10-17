@@ -2,16 +2,22 @@
 
 @section("titolo", "progetti")
 
+@section("titoloPagina", "I miei projects")
+@section("btnCreate")
+        <a class="btn btn-primary" href="{{ route('admin.projects.create') }}">Add new project</a>
+@endsection
+
 @section('content')
 
 
 
 @foreach ($projects as $project)
-    <h2>{{ $project->titolo }}</h2>
-    <p>{{ $project->descrizione }}</p>
-    <p class="small bg-dark-subtle">{{ $project->tags}}</p>
-    <button><a href="{{ route('admin.projects.show', $project->id) }}">INFO</a></button>
-
+    <div class="card p-3 m-2">
+        <a class="text-decoration-none text-primary" href="{{ route('admin.projects.show', $project->id) }}"> <h2>{{ $project->titolo }}</h2> </a>
+        <p>{{ $project->descrizione }}</p>
+        <p class="small text-secondary">{{ $project->tags}}</p>
+    </div>
 @endforeach
+
 
 @endsection

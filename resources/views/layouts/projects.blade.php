@@ -12,6 +12,8 @@
 <body>
     <div class="container">
         <h1>@yield("titoloPagina")</h1>
+        @yield("btnCreate")
+        <hr>
     
         @yield("content")
     </div>
