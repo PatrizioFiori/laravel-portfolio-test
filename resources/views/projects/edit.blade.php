@@ -17,8 +17,12 @@
 
         
         <div class="form-control mb-3 d-flex flex-column">
-            <label for="tags"> Tags del progetto</label>
-            <input type="text" name="tags"value="{{$project->tags}}">
+            <label for="tags"> Categorie </label>
+            <select name="type_id" id="type_id">
+                @foreach($types as $type)
+                    <option value="{{$type->id}}" {{$project->type_id == $type->id ? "selected" : "" }}>{{$type->tag}}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="form-control mb-3 d-flex flex-column">

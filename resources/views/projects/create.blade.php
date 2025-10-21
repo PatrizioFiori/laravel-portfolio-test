@@ -4,18 +4,20 @@
 
 @section('content')
 
-
     <form action="{{ route('admin.projects.store') }}" method="POST">
         @csrf
         <div class="form-control mb-3 d-flex flex-column">
             <label for="titolo"> Titolo progetto</label>
             <input type="text" name="titolo">
         </div>
-
-        
+                
         <div class="form-control mb-3 d-flex flex-column">
-            <label for="tags"> Tags del progetto</label>
-            <input type="text" name="tags">
+            <label for="tags"> Categorie </label>
+            <select name="type_id" id="type_id">
+                @foreach($types as $type)
+                    <option value="{{$type->id}}">{{$type->tag}}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="form-control mb-3 d-flex flex-column">

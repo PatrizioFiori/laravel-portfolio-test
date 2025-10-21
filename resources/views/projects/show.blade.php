@@ -5,7 +5,7 @@
 @section('content')
     <h2>{{ $project->titolo }}</h2>
     <p>{{ $project->descrizione }}</p>
-    <p class="small bg-dark-subtle">{{ $project->tags}}</p>
+    <p class="small bg-dark-subtle">{{ $project->type->tag}}</p>
 
         <div class="d-flex gap-2">
             <a class="btn btn-outline-secondary text-decoration-none text-black" href="{{ route('admin.projects.index') }}">Back</a>
