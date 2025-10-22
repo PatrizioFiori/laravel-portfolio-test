@@ -13,11 +13,11 @@ class TypesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $tagsArray = ["Web Dev (Full Stack)", "Web Dev (Frontend)", "Web Dev (Backend)", "Game Designer (Videogames)", "Game Designer (Tabletop RPG)", "Game Designer (Serious games)"];
+        $TypesArray = ["Web Dev", "Game Designer"];
 
-        foreach ($tagsArray as $tag) {
+        foreach ($TypesArray as $type) {
             $newType = new Type();
-            $newType->tag = $tag;
+            $newType->type_name = $type;
             $newType->save();
         }
     }
