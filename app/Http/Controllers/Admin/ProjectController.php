@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Tag;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view("projects.create", compact("types"));
+        $tags = Tag::all();
+        return view("projects.create", compact("types", "tags"));
     }
 
     // ==============================  //
@@ -41,6 +43,8 @@ class ProjectController extends Controller
 
         //dd($newProject);
         $newProject->save();
+
+        $newProject->tags()->attach($data["tags"]);
         return redirect()->route("admin.projects.show", $newProject);
     }
 

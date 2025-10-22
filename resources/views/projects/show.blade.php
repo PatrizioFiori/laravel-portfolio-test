@@ -3,9 +3,17 @@
 @section("titolo", "Dettagli progetto")
 
 @section('content')
-    <h2>{{ $project->titolo }}</h2>
-    <p>{{ $project->descrizione }}</p>
-    <p class="small bg-dark-subtle">{{ $project->type->tag}}</p>
+
+    <div class="mb-5">
+        <h2>{{ $project->titolo }}</h2>
+        <p>{{ $project->descrizione }}</p>
+        <p class="small bg-dark-subtle">{{ $project->type->type_name}}</p>
+        <div>
+            @foreach ($project->tags as $tag)
+                <span class="badge bg-primary small">{{$tag->tag}}</span>            
+            @endforeach
+    </div>
+    </div>
 
         <div class="d-flex gap-2">
             <a class="btn btn-outline-secondary text-decoration-none text-black" href="{{ route('admin.projects.index') }}">Back</a>
