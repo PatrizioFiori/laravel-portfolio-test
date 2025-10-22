@@ -44,7 +44,9 @@ class ProjectController extends Controller
         //dd($newProject);
         $newProject->save();
 
-        $newProject->tags()->attach($data["tags"]);
+        if ($request->has("tags")) {
+            $newProject->tags()->attach($data["tags"]);
+        }
         return redirect()->route("admin.projects.show", $newProject);
     }
 
@@ -52,24 +54,34 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view("projects.edit", compact("project", "types"));
+        $tags = Tag::all();
+        return view("projects.edit", compact("project", "types", "tags"));
     }
 
     // ==============================  //
     public function update(Request $request, Project $project)
     {
         $data = $request->all();
+
         $project->titolo = $data["titolo"];
         $project->type_id = $data["type_id"];
         $project->descrizione = $data["descrizione"];
 
         $project->update();
+
+        if ($request->has("tags")) {
+            $project->tags()->sync($data["tags"]);
+        } else {
+            $project->tags()->detach();
+        }
+
         return redirect()->route("admin.projects.show", $project);
     }
 
     // ==============================  //
     public function destroy(Project $project)
     {
+        $project->tags()->detach();
         $project->delete();
 
         return redirect()->route("admin.projects.index");

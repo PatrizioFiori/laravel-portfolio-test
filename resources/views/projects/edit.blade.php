@@ -20,9 +20,20 @@
             <label for="tags"> Categorie </label>
             <select name="type_id" id="type_id">
                 @foreach($types as $type)
-                    <option value="{{$type->id}}" {{$project->type_id == $type->id ? "selected" : "" }}>{{$type->tag}}</option>
+                    <option value="{{$type->id}}">{{$type->type_name}}</option>
                 @endforeach
             </select>
+        </div>
+
+                {{-- tags --}}
+        <div class="form-control mb-3 d-flex flex-wrap">
+            @foreach($tags as $tag)
+            <div class="tag me-2">
+                <input type="checkbox" id="tag-{{$tag->id}}" name="tags[]" value="{{$tag->id}}" {{$project->tags->contains($tag->id) ? "checked" : ""}}>
+                <label for="tag-{{$tag->id}}">{{$tag->tag}}</label>
+            </div>
+
+            @endforeach
         </div>
 
         <div class="form-control mb-3 d-flex flex-column">
